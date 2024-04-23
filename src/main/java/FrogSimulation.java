@@ -15,27 +15,37 @@ public class FrogSimulation
 	
 	public boolean simulate()
 	{ 
-		int steps = 0;
-		for(int i = 0; i < maxHops; i++){
-			if(steps >= goalDistance)
-				return true;
-			else if(steps < 0)
-				return false;
-			steps+=hopDistance();
-		}
-		return false;
+		int distance = 0;
+		int hops = 0;
+while(hops < maxHops){
+distance = distance + hopDistance();
+hops++;
+	
+if(distance < 0)
+return false; 
 
+else if(distance >= goalDistance)
+return true;
+	
+}
+return false;
 	}
+
+
+
 	
 	public double runSimulations(int num)
 	{ 
-		int count = 0;
-		for(int i = 0; i < num; i++){
-			if(simulate())
-				count++;
-		}
-		return count/(double)num;
+double successes = 0;
+for(int i = 0; i < num; i++)
+if(simulate() == true)
+successes++;
+return successes/num;
+
+	
 	}
+	
+	
 	
 	
 	//ignore the code below this line
@@ -86,9 +96,11 @@ public class FrogSimulation
 		}
 	}
 	
-	public void setPart(String letter ){
+	public void setPart(String letter)
+	{
 		this.part = letter;
 	}
+
 	
 	public void setHopValues(int[] hopValues)
 	{
@@ -102,8 +114,4 @@ public class FrogSimulation
 		this.row = 0;
 		this.col = 0;
 	}
-	
-	
-	
-	
-} 
+}
